@@ -1,91 +1,168 @@
-# Projects
+# My Projects Monorepo
 
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
+A modern monorepo powered by **Nx**, **pnpm**, and **TypeScript** for building scalable applications and shared libraries.
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/nx-api/js?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
-
-## Finish your CI setup
-
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/OAGliXY8R2)
-
-
-## Generate a library
-
-```sh
-npx nx g @nx/js:lib packages/pkg1 --publishable --importPath=@my-org/pkg1
-```
-
-## Run tasks
-
-To build the library use:
-
-```sh
-npx nx build pkg1
-```
-
-To run any task with Nx use:
-
-```sh
-npx nx <target> <project-name>
-```
-
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
-
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Versioning and releasing
-
-To version and release the library use
+## 🏗️ Project Structure
 
 ```
-npx nx release
+projects/
+├── apps/                      # Applications
+│   └── beautiful-code-snap/   # Code screenshot generator (React + Vite)
+├── packages/                  # Shared libraries
+├── nx.json                    # Nx workspace configuration
+├── pnpm-workspace.yaml       # pnpm workspace configuration
+└── .vercelignore             # Vercel deployment optimization
 ```
 
-Pass `--dry-run` to see what would happen without actually releasing the library.
+## 🚀 Applications
 
-[Learn more about Nx release &raquo;](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+### Beautiful Code Snap
+A modern code screenshot generator built with React, Vite, and Tailwind CSS.
 
-## Keep TypeScript project references up to date
+- **Framework**: React 18 + Vite
+- **Styling**: Tailwind CSS + shadcn/ui components
+- **State Management**: Zustand
+- **Code Highlighting**: highlight.js
+- **Features**: Custom themes, fonts, backgrounds, export options
 
-Nx automatically updates TypeScript [project references](https://www.typescriptlang.org/docs/handbook/project-references.html) in `tsconfig.json` files to ensure they remain accurate based on your project dependencies (`import` or `require` statements). This sync is automatically done when running tasks such as `build` or `typecheck`, which require updated references to function correctly.
+**Live Demo**: [Deploy on Vercel →](https://vercel.com)
 
-To manually trigger the process to sync the project graph dependencies information to the TypeScript project references, run the following command:
+## 🛠️ Tech Stack
 
-```sh
+- **Build System**: Nx 21.3.11
+- **Package Manager**: pnpm
+- **Languages**: TypeScript
+- **Deployment**: Vercel
+- **CI/CD**: GitHub Actions + Nx Cloud
+
+## 📦 Quick Start
+
+### Prerequisites
+- Node.js 18+
+- pnpm 8+
+
+### Installation
+```bash
+# Clone the repository
+git clone <repository-url>
+cd projects
+
+# Install dependencies
+pnpm install
+
+# Start development server
+npx nx run @apps/beautiful-code-snap:dev
+```
+
+### Available Commands
+```bash
+# Development
+npx nx run @apps/beautiful-code-snap:dev
+
+# Build for production
+npx nx build @apps/beautiful-code-snap --configuration=production
+
+# Preview production build
+pnpm --filter @apps/beautiful-code-snap preview
+
+# Run tests
+npx nx test @apps/beautiful-code-snap
+
+# Lint code
+npx nx lint @apps/beautiful-code-snap
+
+# Type checking
+npx nx typecheck @apps/beautiful-code-snap
+```
+
+### Generate New Library
+```bash
+npx nx g @nx/js:lib packages/my-lib --publishable --importPath=@packages/my-lib
+```
+
+## 🚀 Deployment
+
+### Vercel Deployment Configuration
+
+Each application in the monorepo is deployed as a separate Vercel project.
+
+#### Beautiful Code Snap Configuration
+In Vercel Dashboard → Project Settings:
+
+```bash
+# Build Command
+npx nx build @apps/beautiful-code-snap --configuration=production
+
+# Output Directory  
+apps/beautiful-code-snap/dist
+
+# Install Command
+pnpm install
+
+# Ignored Build Step (in Git settings)
+npx nx-ignore @apps/beautiful-code-snap
+```
+
+### Adding New Applications
+1. Create new app: `npx nx g @nx/react:app apps/my-new-app`
+2. Create separate Vercel project
+3. Configure with same pattern, replacing app name
+
+## 🔧 Development Workflow
+
+### Nx Commands
+```bash
+# View project graph
+npx nx graph
+
+# Run affected projects only
+npx nx affected:build
+npx nx affected:test
+
+# Cache management
+npx nx reset  # Clear cache
+```
+
+### TypeScript Sync
+```bash
+# Sync project references
 npx nx sync
-```
 
-You can enforce that the TypeScript project references are always in the correct state when running in CI by adding a step to your CI job configuration that runs the following command:
-
-```sh
+# Check sync in CI
 npx nx sync:check
 ```
 
-[Learn more about nx sync](https://nx.dev/reference/nx-commands#sync)
+## 🔌 Extensions & Tools
 
+### Nx Console
+IDE extension for enhanced developer experience:
+- [VSCode Extension](https://marketplace.visualstudio.com/items?itemName=nrwl.angular-console)
+- [IntelliJ Plugin](https://plugins.jetbrains.com/plugin/21060-nx-console)
 
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+### Nx Cloud
+Connected workspace for advanced features:
+- Remote caching
+- Distributed task execution  
+- CI analytics
+- [Setup Nx Cloud →](https://cloud.nx.app/connect/OAGliXY8R2)
 
-## Install Nx Console
+## 📚 Resources
 
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
+### Documentation
+- [Nx Documentation](https://nx.dev)
+- [Nx Monorepo Guide](https://nx.dev/concepts/more-concepts/applications-and-libraries)
+- [Vercel Deployment](https://vercel.com/docs/monorepos/nx)
+- [pnpm Workspaces](https://pnpm.io/workspaces)
 
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+### Community
+- [Nx Discord](https://go.nx.dev/community)
+- [Nx on X/Twitter](https://twitter.com/nxdevtools)
+- [Nx YouTube](https://www.youtube.com/@nxdevtools)
 
-## Useful links
+---
 
-Learn more:
+## 📄 License
 
-- [Learn more about this workspace setup](https://nx.dev/nx-api/js?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-# projects
+MIT © [Michael0520](https://github.com/Michael0520)
