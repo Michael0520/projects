@@ -28,7 +28,7 @@ A modern code screenshot generator built with React, Vite, and Tailwind CSS.
 - **Features**: Custom themes, fonts, backgrounds, export options
 - **Status**: ✅ Deployed and Live
 
-**Live Demo**: [https://www.michaello.me/projects/beautiful-code-snap →](https://www.michaello.me/projects/beautiful-code-snap)
+**Live Demo**: [https://www.michaello.me/projects/beautiful-code-snap/ →](https://www.michaello.me/projects/beautiful-code-snap/)
 
 ## 🛠️ Tech Stack
 
