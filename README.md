@@ -26,16 +26,18 @@ A modern code screenshot generator built with React, Vite, and Tailwind CSS.
 - **State Management**: Zustand
 - **Code Highlighting**: highlight.js
 - **Features**: Custom themes, fonts, backgrounds, export options
+- **Status**: ✅ Deployed and Live
 
-**Live Demo**: [Deploy on Vercel →](https://vercel.com)
+**Live Demo**: [https://www.michaello.me/projects/beautiful-code-snap →](https://www.michaello.me/projects/beautiful-code-snap)
 
 ## 🛠️ Tech Stack
 
 - **Build System**: Nx 21.3.11
 - **Package Manager**: pnpm
 - **Languages**: TypeScript
-- **Deployment**: Vercel
+- **Deployment**: Vercel (Multiple Projects)
 - **CI/CD**: GitHub Actions + Nx Cloud
+- **Domain Strategy**: Single domain with path-based routing
 
 ## 📦 Quick Start
 
@@ -84,6 +86,12 @@ npx nx g @nx/js:lib packages/my-lib --publishable --importPath=@packages/my-lib
 
 ## 🚀 Deployment
 
+### Domain Structure
+All projects are accessible through the main domain using the URL pattern:
+`https://www.michaello.me/projects/{project-name}`
+
+This is achieved through Vercel rewrites in the main domain's configuration that forward `/projects/*` requests to the respective project's Vercel deployment.
+
 ### Vercel Deployment Configuration
 
 Each application in the monorepo is deployed as a separate Vercel project.
@@ -109,6 +117,13 @@ npx nx-ignore @apps/beautiful-code-snap
 1. Create new app: `npx nx g @nx/react:app apps/my-new-app`
 2. Create separate Vercel project
 3. Configure with same pattern, replacing app name
+4. Update main domain (michaello.me) vercel.json with rewrite rule:
+   ```json
+   {
+     "source": "/projects/my-new-app/:match*",
+     "destination": "https://my-new-app-michaello.vercel.app/:match*"
+   }
+   ```
 
 ## 🔧 Development Workflow
 
