@@ -27,6 +27,8 @@
           "watchDepsName": "watch-deps"
         }
       }
-    }
+    },
+    "@nx/vite",
+    "@nx/react"
   ]
 }
