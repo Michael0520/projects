@@ -1,0 +1,5 @@
+{
+  "buildCommand": "npx nx build @apps/beautiful-code-snap --configuration=production",
+  "outputDirectory": "dist",
+  "trailingSlash": false
+}
